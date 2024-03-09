@@ -16,6 +16,10 @@ makedirs('tmp', exist_ok=True)
 #initialize fast api app
 app = FastAPI()
 
+@app.get("/health")
+def health():
+  return "OK"
+
 @app.get("/infer")
 async def infer(url: str):
   req_id = str(uuid4())
