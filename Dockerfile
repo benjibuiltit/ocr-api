@@ -2,7 +2,7 @@ FROM python:3.11
 
 ENV PATH="/root/.local/bin:$PATH"
 
-COPY ./poetry.lock ./pyproject.toml main.py ./
+COPY ./poetry.lock ./pyproject.toml main.py models.py ./
 
 RUN apt update -y && \
     apt install pipx -y && \
