@@ -1,5 +1,5 @@
 from uuid import uuid4
-from os import path, remove
+from os import path, remove, makedirs, environ
 from urllib.parse import unquote
 
 from fastapi import FastAPI
@@ -11,6 +11,7 @@ import httpx
 print("loading model before starting server...")
 ocr = PaddleOCR(lang="en", use_gpu=False)
 print("model loaded. server starting...")
+makedirs('tmp', exist_ok=True)
 
 #initialize fast api app
 app = FastAPI()
@@ -33,10 +34,10 @@ async def infer(url: str):
   remove(f_path)
 
   result_text = []
-  for line in result:
+  for line in result[0]:
     result_text.append(line[1][0])
 
   return { "text": ' '.join(result_text) }
 
 if __name__ == "__main__":
-  uvicorn.run("main:app", port=5000, log_level="info")
+  uvicorn.run("main:app", port=environ.get("PORT", 5000), log_level="info")

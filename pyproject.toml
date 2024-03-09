@@ -5,11 +5,12 @@ description = ""
 authors = ["Benji Speer <benjibuiltit@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-fastapi = "^0.79.0"
+python = "^3.11"
 uvicorn = "^0.18.2"
-paddlepaddle = "^2.3.1"
 httpx = "^0.23.0"
+fastapi = "^0.110.0"
+paddleocr = "^2.7.0.3"
+paddlepaddle = "^2.6.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
